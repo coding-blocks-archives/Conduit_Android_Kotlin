@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+    <ImageView
+            android:id="@+id/avatarImageView"
+            android:layout_width="32dp"
+            android:layout_height="33dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/avatarImageView"
+            tools:text="A great article" />
+
+    <TextView
+            android:id="@+id/bodySnippetTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="3"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleTextView"
+            tools:text="This is a sample article body to show in the preview of the list item. Long enough text for multiple lines" />
+
+    <TextView
+            android:id="@+id/dateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/authorTextView"
+            app:layout_constraintTop_toBottomOf="@+id/authorTextView"
+            tools:text="December 15, 2020" />
+
+    <TextView
+            android:id="@+id/authorTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/avatarImageView"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="author" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
