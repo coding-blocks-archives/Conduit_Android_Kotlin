@@ -1,6 +1,6 @@
 package io.realworld.api
 
-import io.realworld.api.models.entities.UserCreds
+import io.realworld.api.models.entities.SignupData
 import io.realworld.api.models.requests.SignupRequest
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
@@ -38,7 +38,7 @@ class ConduitClientTests {
 
     @Test
     fun `POST users - create user`() {
-        val userCreds = UserCreds(
+        val userCreds = SignupData(
             email = "testemail${Random.nextInt(999, 9999)}@test.com",
             password = "pass${Random.nextInt(9999, 999999)}",
             username = "rand_user_${Random.nextInt(99, 999)}"
