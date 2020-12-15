@@ -13,7 +13,6 @@ class FeedViewModel : ViewModel() {
 
 
     private val _feed = MutableLiveData<List<Article>>()
-
     val feed: LiveData<List<Article>> = _feed
 
     fun fetchGlobalFeed() = viewModelScope.launch {

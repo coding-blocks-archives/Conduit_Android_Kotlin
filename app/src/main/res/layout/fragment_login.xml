@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <EditText
+            android:inputType="textEmailAddress"
+            android:textAlignment="center"
+            android:hint="email"
+            android:id="@+id/emailEditText"
+            android:ems="10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    <EditText
+            android:inputType="textPassword"
+            android:textAlignment="center"
+            android:hint="password"
+            android:id="@+id/passwordEditText"
+            android:ems="10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    <com.google.android.material.button.MaterialButton
+            android:text="Login"
+            android:id="@+id/loginButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+</LinearLayout>

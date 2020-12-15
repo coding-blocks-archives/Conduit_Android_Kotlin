@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/navigation_auth"
+        app:startDestination="@id/loginFragment">
+
+
+    <fragment
+            android:id="@+id/signupFragment"
+            android:name="io.realworld.android.ui.auth.SignupFragment"
+            android:label="SignupFragment" />
+    <fragment
+            android:id="@+id/loginFragment"
+            android:name="io.realworld.android.ui.auth.LoginFragment"
+            android:label="LoginFragment" />
+    <action
+            android:id="@+id/gotoLoginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/navigation_auth"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim" />
+    <action
+            android:id="@+id/gotoSignupFragment"
+            app:popUpTo="@id/navigation_auth"
+            app:destination="@id/signupFragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim" />
+
+
+</navigation>
