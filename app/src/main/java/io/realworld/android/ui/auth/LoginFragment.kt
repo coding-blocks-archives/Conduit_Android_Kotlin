@@ -4,14 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import io.realworld.android.AuthViewModel
-import io.realworld.android.databinding.FragmentLoginBinding
+import io.realworld.android.databinding.FragmentLoginSignupBinding
 
 class LoginFragment : Fragment() {
 
-    private var _binding: FragmentLoginBinding? = null
+    private var _binding: FragmentLoginSignupBinding? = null
     val authViewModel: AuthViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -19,7 +20,8 @@ class LoginFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        _binding = FragmentLoginSignupBinding.inflate(inflater, container, false)
+        _binding?.usernameEditText?.isVisible = false
 
         return _binding?.root
     }
@@ -28,7 +30,7 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         _binding?.apply {
-            loginButton.setOnClickListener {
+            submitButton.setOnClickListener {
                 authViewModel.login(
                     emailEditText.text.toString(),
                     passwordEditText.text.toString()

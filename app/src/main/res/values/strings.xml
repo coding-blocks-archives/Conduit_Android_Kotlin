@@ -8,5 +8,6 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_feed">Feed</string>
+    <string name="menu_my_feed">My Feed</string>
     <string name="menu_auth">Login / Signup</string>
 </resources>

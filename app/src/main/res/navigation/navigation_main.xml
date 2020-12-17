@@ -12,6 +12,12 @@
             tools:layout="@layout/fragment_feed" />
 
     <fragment
+            android:id="@+id/nav_my_feed"
+            android:name="io.realworld.android.ui.feed.MyFeedFragment"
+            android:label="@string/menu_my_feed"
+            tools:layout="@layout/fragment_feed" />
+
+    <fragment
             android:id="@+id/nav_auth"
             android:name="io.realworld.android.ui.auth.AuthFragment"
             android:label="@string/menu_auth"
