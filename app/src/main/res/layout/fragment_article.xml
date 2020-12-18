@@ -25,7 +25,7 @@
                 android:id="@+id/avatarImageView"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:background="@color/conduit_grey" />
+                tools:background="@color/conduit_grey" />
 
         <LinearLayout
                 android:layout_width="wrap_content"

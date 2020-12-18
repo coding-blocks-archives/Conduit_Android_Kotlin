@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import io.realworld.android.R
 import io.realworld.android.databinding.FragmentArticleBinding
+import io.realworld.android.extensions.loadImage
+import io.realworld.android.extensions.timeStamp
 
 class ArticleFragment : Fragment() {
 
@@ -40,7 +42,8 @@ class ArticleFragment : Fragment() {
                 titleTextView.text = it.title
                 bodyTextView.text = it.body
                 authorTextView.text = it.author.username
-                dateTextView.text = it.createdAt // TODO: format
+                dateTextView.timeStamp = it.createdAt
+                avatarImageView.loadImage(it.author.image, true)
             }
         }
 

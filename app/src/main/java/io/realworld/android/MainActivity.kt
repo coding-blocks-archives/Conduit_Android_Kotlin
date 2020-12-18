@@ -1,9 +1,12 @@
 package io.realworld.android
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
-import android.widget.Toast
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.edit
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -17,16 +20,23 @@ import io.realworld.api.models.entities.User
 
 class MainActivity : AppCompatActivity() {
 
+    companion object {
+        const val PREFS_FILE_AUTH = "prefs_auth"
+        const val PREFS_KEY_TOKEN = "token"
+    }
+
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
     private lateinit var authViewModel: AuthViewModel
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        sharedPreferences = getSharedPreferences(PREFS_FILE_AUTH, Context.MODE_PRIVATE)
         authViewModel = ViewModelProvider(this).get(AuthViewModel::class.java)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
+
         setContentView(binding.root)
 
         setSupportActionBar(binding.appBarMain.toolbar)
@@ -46,10 +56,25 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+        sharedPreferences.getString(PREFS_KEY_TOKEN, null)?.let { t ->
+            authViewModel.getCurrentUser(t)
+        }
+
         authViewModel.user.observe({ lifecycle }) {
             updateMenu(it)
+            it?.token?.let { t ->
+                sharedPreferences.edit {
+                    putString(PREFS_KEY_TOKEN, t)
+                }
+            } ?: run {
+                sharedPreferences.edit {
+                    remove(PREFS_KEY_TOKEN)
+                }
+            }
             navController.navigateUp()
         }
+
+
     }
 
     private fun updateMenu(user: User?) {
@@ -59,10 +84,21 @@ class MainActivity : AppCompatActivity() {
                 binding.navView.inflateMenu(R.menu.menu_main_user)
             }
             else -> {
-
+                binding.navView.menu.clear()
+                binding.navView.inflateMenu(R.menu.menu_main_guest)
             }
         }
 
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_logout -> {
+                authViewModel.logout()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

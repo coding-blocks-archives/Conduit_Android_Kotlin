@@ -1,7 +1,5 @@
 package io.realworld.android.ui.feed
 
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,19 +8,22 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import io.realworld.android.R
 import io.realworld.android.databinding.ListItemArticleBinding
+import io.realworld.android.extensions.loadImage
+import io.realworld.android.extensions.timeStamp
 import io.realworld.api.models.entities.Article
 
-class ArticleFeedAdapter(val onArticleClicked: (slug: String) -> Unit) : ListAdapter<Article, ArticleFeedAdapter.ArticleViewHolder>(
-    object : DiffUtil.ItemCallback<Article>() {
-        override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
-            return oldItem == newItem
-        }
+class ArticleFeedAdapter(val onArticleClicked: (slug: String) -> Unit) :
+    ListAdapter<Article, ArticleFeedAdapter.ArticleViewHolder>(
+        object : DiffUtil.ItemCallback<Article>() {
+            override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
+                return oldItem == newItem
+            }
 
-        override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
-            return oldItem.toString() == newItem.toString()
+            override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
+                return oldItem.toString() == newItem.toString()
+            }
         }
-    }
-) {
+    ) {
     inner class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
@@ -42,8 +43,8 @@ class ArticleFeedAdapter(val onArticleClicked: (slug: String) -> Unit) : ListAda
             authorTextView.text = article.author.username
             titleTextView.text = article.title
             bodySnippetTextView.text = article.body
-            dateTextView.text = "December 15, 2020" //TODO: format actual date
-            avatarImageView.background = ColorDrawable(Color.GRAY) //TODO: show real image
+            dateTextView.timeStamp = article.createdAt
+            avatarImageView.loadImage(article.author.image, true)
 
             root.setOnClickListener { onArticleClicked(article.slug) }
 
