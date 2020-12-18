@@ -10,4 +10,5 @@
     <string name="menu_feed">Feed</string>
     <string name="menu_my_feed">My Feed</string>
     <string name="menu_auth">Login / Signup</string>
+    <string name="menu_settings">Settings</string>
 </resources>
