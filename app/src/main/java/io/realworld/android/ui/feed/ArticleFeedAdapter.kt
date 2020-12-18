@@ -12,7 +12,7 @@ import io.realworld.android.R
 import io.realworld.android.databinding.ListItemArticleBinding
 import io.realworld.api.models.entities.Article
 
-class ArticleFeedAdapter : ListAdapter<Article, ArticleFeedAdapter.ArticleViewHolder>(
+class ArticleFeedAdapter(val onArticleClicked: (slug: String) -> Unit) : ListAdapter<Article, ArticleFeedAdapter.ArticleViewHolder>(
     object : DiffUtil.ItemCallback<Article>() {
         override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
             return oldItem == newItem
@@ -23,8 +23,6 @@ class ArticleFeedAdapter : ListAdapter<Article, ArticleFeedAdapter.ArticleViewHo
         }
     }
 ) {
-
-
     inner class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
@@ -44,8 +42,10 @@ class ArticleFeedAdapter : ListAdapter<Article, ArticleFeedAdapter.ArticleViewHo
             authorTextView.text = article.author.username
             titleTextView.text = article.title
             bodySnippetTextView.text = article.body
-            dateTextView.text = "December 15, 2020"
-            avatarImageView.background = ColorDrawable(Color.GRAY)
+            dateTextView.text = "December 15, 2020" //TODO: format actual date
+            avatarImageView.background = ColorDrawable(Color.GRAY) //TODO: show real image
+
+            root.setOnClickListener { onArticleClicked(article.slug) }
 
         }
 
