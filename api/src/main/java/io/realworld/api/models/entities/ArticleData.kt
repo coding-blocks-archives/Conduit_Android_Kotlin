@@ -7,11 +7,11 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class ArticleData(
     @Json(name = "body")
-    val body: String,
+    val body: String?=null,
     @Json(name = "description")
-    val description: String,
+    val description: String?=null,
     @Json(name = "tagList")
-    val tagList: List<String>,
+    val tagList: List<String>?=null,
     @Json(name = "title")
-    val title: String
+    val title: String?=null
 )

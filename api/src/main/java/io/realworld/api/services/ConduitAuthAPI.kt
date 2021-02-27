@@ -1,5 +1,6 @@
 package io.realworld.api.services
 
+import io.realworld.api.models.requests.UpsertArticleRequest
 import io.realworld.api.models.requests.UserUpdateRequest
 import io.realworld.api.models.responses.ArticleResponse
 import io.realworld.api.models.responses.ArticlesResponse
@@ -45,4 +46,9 @@ interface ConduitAuthAPI {
     suspend fun unfavoriteArticle(
         @Path("slug") slug: String
     ): Response<ArticleResponse>
+
+    @POST("articles")
+    suspend fun createArticle(
+        @Body article: UpsertArticleRequest
+    ) :Response<ArticleResponse>
 }

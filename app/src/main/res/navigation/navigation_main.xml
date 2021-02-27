@@ -51,4 +51,9 @@
             android:id="@+id/nav_article"
             android:name="io.realworld.android.ui.article.ArticleFragment"
             tools:layout="@layout/fragment_article" />
+
+    <fragment
+            android:id="@+id/nav_create_article"
+            android:name="io.realworld.android.ui.article.CreateArticleFragment"
+            tools:layout="@layout/fragment_create_article" />
 </navigation>
