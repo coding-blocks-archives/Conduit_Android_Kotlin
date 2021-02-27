@@ -14,7 +14,7 @@
                 android:title="@string/menu_my_feed" />
         <item
                 android:id="@+id/nav_create_article"
-                android:icon="@drawable/ic_my_feed"
+                android:icon="@drawable/ic_create_article"
                 android:title="@string/create_article" />
 
         <item
